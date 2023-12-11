@@ -24,5 +24,5 @@
         </div>
     </form>
 </div>
-<!-- dev -->
+
 <?php include_once('layouts/footer.php'); ?>
