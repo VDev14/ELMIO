@@ -12,7 +12,6 @@
  $c_yearly          = get_yearly('sales');
  $c_user          = count_by_id('users');
  $c_customer      = count_by_id('customers');
- $c_new_customer  = count_by_id_currentDate('customers');
  $products_sold   = find_higest_saleing_product('10');
  $customer_sold   = find_customer_highest_sold('5');
  $recent_products = find_recent_product_added('5');
@@ -72,7 +71,7 @@
     <div class="col-md-3">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-green">
-          <i class="glyphicon glyphicon-usd"></i>
+          <i class="glyphicon glyphicon">&#8369;</i>
         </div>
         <div class="panel-value pull-right">
           <h2 class="margin-top"> <?php  echo $c_sale['total']; ?></h2>
@@ -96,25 +95,11 @@
     </div>
 	</a>
 
-  <a href="customers.php" style="color:black;">
-		<div class="col-md-3">
-       <div class="panel panel-box clearfix">
-         <div class="panel-icon pull-left bg-red">
-          <i class="glyphicon glyphicon-user"></i>
-        </div>
-        <div class="panel-value pull-right">
-          <h2 class="margin-top"> <?php  echo $c_new_customer['total']; ?> </h2>
-          <p class="text-muted">New Customers</p>
-        </div>
-       </div>
-    </div>
-	</a>
-
   <a href="sales.php" style="color:black;">
-    <div class="col-md-3">
+    <div class="col-md-4">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-green">
-          <i class="glyphicon glyphicon-usd"></i>
+          <i class="glyphicon glyphicon">&#8369;</i>
         </div>
         <div class="panel-value pull-right">
           <h2 class="margin-top">₱<?php  echo number_format($c_monthly['total'], 2); ?></h2>
@@ -125,10 +110,10 @@
 	</a>
 
   <a href="sales.php" style="color:black;">
-    <div class="col-md-3">
+    <div class="col-md-4">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-green">
-          <i class="glyphicon glyphicon-usd"></i>
+          <i class="glyphicon glyphicon">&#8369;</i>
         </div>
         <div class="panel-value pull-right">
           <h2 class="margin-top">₱<?php  echo number_format($c_yearly['total'], 2); ?></h2>

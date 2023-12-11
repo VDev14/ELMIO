@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $page_title = 'Sales Report';
 $results = '';
   require_once('includes/load.php');
@@ -105,25 +105,24 @@ $results = '';
               <td class="text-right"><?php echo remove_junk($result['total_sales']);?></td>
               <td class="text-right"><?php echo remove_junk($result['total_saleing_price']);?></td>
           </tr>
-        <?php endforeach; ?>
-        </tbody>
-        <tfoot>
-         <tr class="text-right">
-           <td colspan="4"></td>
-           <td colspan="1">Grand Total</td>
-           <td> $
-           <?php echo number_format(total_price($results)[0], 2);?>
-          </td>
-         </tr>
-         <tr class="text-right">
-           <td colspan="4"></td>
-           <td colspan="1">Profit</td>
-           <td> $<?php echo number_format(total_price($results)[1], 2);?></td>
-         </tr>
-        </tfoot>
-      </table>
-    </div>
-  <?php
+          <?php endforeach; ?>
+</tbody>
+<tfoot>
+    <tr class="text-right">
+        <td colspan="4"></td>
+        <td colspan="1">Grand Total</td>
+        <td>₱ <?php echo number_format(total_price($results)[0], 2);?></td>
+    </tr>
+    <tr class="text-right">
+        <td colspan="4"></td>
+        <td colspan="1">Profit</td>
+        <td>₱ <?php echo number_format(total_price($results)[1], 2);?></td>
+    </tr>
+</tfoot>
+</table>
+</div>
+<?php
+
     else:
         $session->msg("d", "Sorry no sales has been found. ");
         redirect('sales_report.php', false);

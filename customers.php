@@ -58,7 +58,7 @@
                   <i class="glyphicon glyphicon-pencil"></i>
                </a>
                 <a href="delete_customer.php?id=<?php echo (int)$a_customer['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                  <i class="glyphicon glyphicon-remove"></i>
+                   <i class="glyphicon glyphicon-remove"></i>
                 </a>
                 </div>
            </td>

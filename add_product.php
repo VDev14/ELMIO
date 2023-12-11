@@ -8,10 +8,9 @@
 ?>
 <?php
  if(isset($_POST['add_product'])){
-   $req_fields = array('customer-name,product-title','product-categorie','product-quantity','buying-price', 'saleing-price' );
+   $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price' );
    validate_fields($req_fields);
    if(empty($errors)){
-     $customer_id  = remove_junk($db->escape($_POST['customer_id']));
      $p_name  = remove_junk($db->escape($_POST['product-title']));
      $p_cat   = remove_junk($db->escape($_POST['product-categorie']));
      $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
@@ -24,9 +23,9 @@
      }
      $date    = make_date();
      $query  = "INSERT INTO products (";
-     $query .=" name,quantity,buy_price,sale_price,categorie_id,media_id,date, customer_id";
+     $query .=" name,quantity,buy_price,sale_price,categorie_id,media_id,date";
      $query .=") VALUES (";
-     $query .=" '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$media_id}', '{$date}', '{$customer_id}'";
+     $query .=" '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$media_id}', '{$date}'";
      $query .=")";
      $query .=" ON DUPLICATE KEY UPDATE name='{$p_name}'";
      if($db->query($query)){
@@ -57,7 +56,7 @@
         <div class="panel-heading">
           <strong>
             <span class="glyphicon glyphicon-th"></span>
-            <span>Add New Product</span>
+            <span>Add  Product</span>
          </strong>
         </div>
         <div class="panel-body">
@@ -101,24 +100,24 @@
                      <span class="input-group-addon">
                       <i class="glyphicon glyphicon-shopping-cart"></i>
                      </span>
-                     <input type="number" class="form-control" name="product-quantity" placeholder="Product Quantity">
+                     <input type="number" class="form-control" name="product-quantity" placeholder="Quantity">
                   </div>
                  </div>
                  <div class="col-md-4">
                    <div class="input-group">
                      <span class="input-group-addon">
-                       <i class="glyphicon glyphicon-usd"></i>
+                       <i class="glyphicon glyphicon">&#8369;</i>
                      </span>
-                     <input type="number" class="form-control" name="buying-price" placeholder="Buying Price">
+                     <input type="number" class="form-control" name="buying-price" placeholder="Buying">
                      <span class="input-group-addon">.00</span>
                   </div>
                  </div>
                   <div class="col-md-4">
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-usd"></i>
+                        <i class="glyphicon glyphicon">&#8369;</i>
                       </span>
-                      <input type="number" class="form-control" name="saleing-price" placeholder="Selling Price">
+                      <input type="number" class="form-control" name="saleing-price" placeholder="Selling">
                       <span class="input-group-addon">.00</span>
                    </div>
                   </div>

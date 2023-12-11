@@ -48,7 +48,7 @@
                 <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
                 <td class="text-center"> ₱<?php echo remove_junk(number_format($product['buy_price']), 2); ?></td>
                 <td class="text-center"> ₱<?php echo remove_junk(number_format($product['sale_price']), 2); ?></td>
-                <td class="text-center"> <?php echo read_date($product['date']); ?></td>
+                <td class="text-center"> <?php echo date('F j, Y, g:i a', strtotime($product['date'])); ?></td>
                 <td class="text-center">
                   <div class="btn-group">
                     <a href="edit_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-info btn-xs"  title="Edit" data-toggle="tooltip">

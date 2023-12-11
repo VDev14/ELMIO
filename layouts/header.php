@@ -20,7 +20,7 @@
       <div class="logo pull-left"><img src="uploads/el mio.png" width="50" height="50"> Inventory System</div>
       <div class="header-content">
       <div class="header-date pull-left">
-        <strong><?php echo date("F j, Y, g:i a");?></strong>
+      <strong><?php date_default_timezone_set('Asia/Manila');echo date("F j, Y, g:i a"); ?></strong>
       </div>
       <div class="pull-right clearfix">
         <ul class="info-menu list-inline list-unstyled">
