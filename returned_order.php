@@ -1,73 +1,81 @@
 <?php
-  $page_title = 'All Product';
+  $page_title = 'Returned Order';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
-   //page_require_level(2);
-  $products = join_product_table();
+   //page_require_level(3);
+?>
+<?php
+$sales = find_all_returned_sale();
 ?>
 <?php include_once('layouts/header.php'); ?>
-  <div class="row">
-     <div class="col-md-12">
-       <?php echo display_msg($msg); ?>
-     </div>
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading clearfix">
-         <div class="pull-right">
-           <a href="add_product.php" class="btn btn-primary">Add New</a>
-         </div>
+<div class="row">
+  <div class="col-md-6">
+    <?php echo display_msg($msg); ?>
+  </div>
+</div> 
+
+  <!-- Modal --> 
+  <div class="modal fade" id="returnmodal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="returnmodalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="returnmodalLongTitle">Return Order</h1> 
         </div>
+        <div class="modal-body"> 
+          <textarea style="max-width:565px;min-width:565px;"type="textarea" rows="5" class="form-control" id="content" name="content" placeholder="Enter Reason" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="row"> 
+    <div class="col-md-12">
+      <div class="panel panel-default"> 
+        <div class="panel-heading clearfix">
+          <strong>
+            <span class="glyphicon glyphicon-th"></span>
+            <span>All Sales</span>
+          </strong>
+
         <div class="panel-body">
-          <table class="table table-bordered">
+          <table class="table table-bordered table-striped">
             <thead>
               <tr>
                 <th class="text-center" style="width: 50px;">#</th>
-                <th> Photo</th>
-                <th> Product Title </th>
-                <th class="text-center" style="width: 10%;"> Categories </th>
-                <th class="text-center" style="width: 10%;"> In-Stock </th>
-                <th class="text-center" style="width: 10%;"> Buying Price </th>
-                <th class="text-center" style="width: 10%;"> Selling Price </th>
-                <th class="text-center" style="width: 10%;"> Product Added </th>
+                <th> Customer</th>
+                <th> Product name </th>
+                <th class="text-center" style="width: 15%;"> Quantity</th>
+                <th class="text-center" style="width: 15%;"> Total </th>
+                <th class="text-center" style="width: 15%;"> Date </th>
                 <th class="text-center" style="width: 100px;"> Actions </th>
-              </tr>
+             </tr>
             </thead>
-            <tbody>
-              <?php foreach ($products as $product):?>
-              <tr>
-                <td class="text-center"><?php echo count_id();?></td>
-                <td>
-                  <?php if($product['media_id'] === '0'): ?>
-                    <img class="img-avatar img-circle" src="uploads/products/no_image.png" alt="">
-                  <?php else: ?>
-                  <img class="img-avatar img-circle" src="uploads/products/<?php echo $product['image']; ?>" alt="">
-                <?php endif; ?>
-                </td>
-                <td> <?php echo remove_junk($product['name']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
-                <td class="text-center"> ₱<?php echo remove_junk(number_format($product['buy_price']), 2); ?></td>
-                <td class="text-center"> ₱<?php echo remove_junk(number_format($product['sale_price']), 2); ?></td>
-                <td class="text-center"> <?php echo date('F j, Y, g:i a', strtotime($product['date'])); ?></td>
-                <td class="text-center">
-                  <div class="btn-group">
-                    <a href="edit_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-info btn-xs"  title="Edit" data-toggle="tooltip">
-                      <span class="glyphicon glyphicon-edit"></span>
-                    </a>
-                    <a href="delete_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
-                      <span class="glyphicon glyphicon-trash"></span>
-                    </a>
-                    <a href="delete_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
-                      <span class="glyphicon glyphicon-trash"></span>
-                    </a>
+           <tbody>
+             <?php foreach ($sales as $sale):?>
+             <tr>
+               <td class="text-center"><?php echo count_id();?></td>
+               <td><?php echo remove_junk($sale['fullname']); ?></td>
+               <td><?php echo remove_junk($sale['name']); ?></td>
+               <td class="text-center"><?php echo (int)$sale['qty']; ?></td>
+               <td class="text-center">₱<?php echo remove_junk(number_format($sale['price']), 2); ?></td>
+               <td class="text-center"><?php echo $sale['date']; ?></td>
+               <td class="text-center">
+                  <div class="btn-group"> 
+                     <a href="delete_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
+                       <span class="glyphicon glyphicon-trash"></span>
+                     </a> 
                   </div>
-                </td>
-              </tr>
-             <?php endforeach; ?>
-            </tbody>
-          </tabel>
+               </td>
+             </tr>
+             <?php endforeach;?>
+           </tbody>
+         </table>
         </div>
       </div>
     </div>
   </div>
-  <?php include_once('layouts/footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>

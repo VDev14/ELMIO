@@ -385,6 +385,20 @@ function find_all_customer_purchase($id){
             FROM sales s
             LEFT JOIN products p ON s.product_id = p.id
             LEFT JOIN customers c ON s.customer_id = c.id
+            WHERE s.status = 'SOLD'
+            ORDER BY s.date DESC";
+   return find_by_sql($sql);
+ } 
+ /*--------------------------------------------------------------*/
+ /* Function for find all returned sales
+ /*--------------------------------------------------------------*/
+ function find_all_returned_sale(){
+   global $db;
+   $sql  = "SELECT s.id,s.qty,s.price,s.date,p.name, c.fullname
+            FROM sales s
+            LEFT JOIN products p ON s.product_id = p.id
+            LEFT JOIN customers c ON s.customer_id = c.id
+            WHERE s.status = 'RETURNED'
             ORDER BY s.date DESC";
    return find_by_sql($sql);
  }
@@ -413,7 +427,7 @@ function find_sale_by_dates($start_date,$end_date){
   $sql .= "SUM(p.buy_price * s.qty) AS total_buying_price ";
   $sql .= "FROM sales s ";
   $sql .= "LEFT JOIN products p ON s.product_id = p.id";
-  $sql .= " WHERE s.date BETWEEN '{$start_date}' AND '{$end_date}'";
+  $sql .= " WHERE s.date BETWEEN '{$start_date}' AND '{$end_date}' AND s.status = 'SOLD'";
   $sql .= " GROUP BY DATE(s.date),p.name";
   $sql .= " ORDER BY DATE(s.date) DESC";
   return $db->query($sql);
@@ -428,7 +442,7 @@ function  dailySales($year,$month){
   $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price";
   $sql .= " FROM sales s";
   $sql .= " LEFT JOIN products p ON s.product_id = p.id";
-  $sql .= " WHERE DATE_FORMAT(s.date, '%Y-%m' ) = '{$year}-{$month}'";
+  $sql .= " WHERE DATE_FORMAT(s.date, '%Y-%m' ) = '{$year}-{$month}' AND s.status = 'SOLD'";
   $sql .= " GROUP BY DATE_FORMAT( s.date,  '%e' ),s.product_id";
   return find_by_sql($sql);
 }
@@ -442,7 +456,7 @@ function  monthlySales($year){
   $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price";
   $sql .= " FROM sales s";
   $sql .= " LEFT JOIN products p ON s.product_id = p.id";
-  $sql .= " WHERE DATE_FORMAT(s.date, '%Y' ) = '{$year}'";
+  $sql .= " WHERE DATE_FORMAT(s.date, '%Y' ) = '{$year}' AND s.status = 'SOLD'";
   $sql .= " GROUP BY DATE_FORMAT( s.date,  '%c' ),s.product_id";
   $sql .= " ORDER BY date_format(s.date, '%c' ) ASC";
   return find_by_sql($sql);

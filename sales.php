@@ -12,10 +12,30 @@ $sales = find_all_sale();
   <div class="col-md-6">
     <?php echo display_msg($msg); ?>
   </div>
-</div>
-  <div class="row">
+</div> 
+
+        <!-- Modal --> 
+        <div class="modal fade" id="returnmodal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="returnmodalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title" id="returnmodalLongTitle">Return Order</h1> 
+              </div>
+              <div class="modal-body"> 
+                <textarea style="max-width:565px;min-width:565px;"type="textarea" rows="5" class="form-control" id="content" name="content" placeholder="Enter Reason" required></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+  <div class="row"> 
     <div class="col-md-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default"> 
         <div class="panel-heading clearfix">
           <strong>
             <span class="glyphicon glyphicon-th"></span>
@@ -51,7 +71,8 @@ $sales = find_all_sale();
                      </a>
                      <a href="delete_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
                        <span class="glyphicon glyphicon-trash"></span>
-                     </a><a href="delete_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-primary btn-xs"  title="Return Order" data-toggle="tooltip">
+                     </a>
+                     <a class="btn btn-primary btn-xs"  title="Return Order" id="returnbtn" data-toggle="tooltip">
                        <span class="glyphicon glyphicon-retweet"></span>
                      </a>
                   </div>
@@ -64,4 +85,14 @@ $sales = find_all_sale();
       </div>
     </div>
   </div>
+ 
+
 <?php include_once('layouts/footer.php'); ?>
+
+<!-- <script>
+  $(document).ready(function(){
+    $(document).on('click','#returnbtn',function(){
+      $("#returnmodal").modal('show'); 
+    });  
+	});
+</script> -->
