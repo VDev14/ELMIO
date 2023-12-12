@@ -51,6 +51,8 @@ $sales = find_all_sale();
                      </a>
                      <a href="delete_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
                        <span class="glyphicon glyphicon-trash"></span>
+                     </a><a href="delete_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-primary btn-xs"  title="Return Order" data-toggle="tooltip">
+                       <span class="glyphicon glyphicon-retweet"></span>
                      </a>
                   </div>
                </td>

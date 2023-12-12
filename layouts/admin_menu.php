@@ -46,5 +46,23 @@
         <li><a href="monthly_sales.php">Monthly sales</a></li>
         <li><a href="daily_sales.php">Daily sales</a> </li>
       </ul>
+  </li> 
+<hr>
+  <li>
+    <a href="#" class="submenu-toggle">
+      <i class="glyphicon glyphicon-trash"></i>
+      <span>Disposed items</span>
+      </a>
+      <ul class="nav submenu">
+        <li><a href="pulled_out_items.php">Pulled Out Items</a></li>
+        <li><a href="Returned_order.php">Returned Order</a></li>
+      </ul>
   </li>
+
+
+
+
+
+
+
 </ul>
